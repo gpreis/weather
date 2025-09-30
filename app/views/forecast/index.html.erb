@@ -1,0 +1,18 @@
+<div class="flex items-center justify-center min-h-[60vh]">
+  <div class="bg-white rounded-lg shadow-md p-10 w-full max-w-2xl">
+    <div class="mb-8">
+      <h2 class="text-2xl font-semibold text-gray-800 mb-3">Weather Forecast</h2>
+      <p class="text-gray-600">Enter an address to get the 5-day forecast</p>
+    </div>
+
+    <%= form_with url: search_forecast_index_path, method: :get, class: "flex gap-3" do |f| %>
+      <%= f.text_field :address,
+          placeholder: "Enter address...",
+          class: "flex-1 px-4 py-3 border border-gray-300 rounded focus:outline-none focus:border-blue-400 focus:ring-1 focus:ring-blue-400",
+          required: true %>
+
+      <%= f.submit "Search",
+          class: "bg-green-500 hover:bg-green-600 text-white font-medium py-3 px-8 rounded transition cursor-pointer" %>
+    <% end %>
+  </div>
+</div>

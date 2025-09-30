@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title><%= content_for(:title) || "Weather" %></title>
+    <title><%= content_for(:title) || "Weather Forecast" %></title>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="mobile-web-app-capable" content="yes">
@@ -22,7 +22,27 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <%= yield %>
+  <body class="bg-blue-50 min-h-screen">
+    <nav class="bg-white shadow-sm">
+      <div class="max-w-6xl mx-auto px-4 py-5">
+        <h1 class="text-xl font-semibold text-gray-800">Weather Forecast</h1>
+      </div>
+    </nav>
+
+    <main class="max-w-6xl mx-auto px-4 py-12">
+      <% if flash[:notice] %>
+        <div class="bg-blue-100 border border-blue-300 text-blue-800 px-4 py-3 rounded mb-6">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+
+      <% if flash[:alert] %>
+        <div class="bg-red-100 border border-red-300 text-red-800 px-4 py-3 rounded mb-6">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+
+      <%= yield %>
+    </main>
   </body>
 </html>
