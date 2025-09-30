@@ -45,3 +45,11 @@ group :development do
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem "web-console"
 end
+
+gem "tailwindcss-ruby", "~> 4.1"
+
+gem "tailwindcss-rails", "~> 4.3"
+
+gem "geocoder", "~> 1.8"
+
+gem "redis", "~> 5.4"
