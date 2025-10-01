@@ -53,3 +53,5 @@ gem "tailwindcss-rails", "~> 4.3"
 gem "geocoder", "~> 1.8"
 
 gem "redis", "~> 5.4"
+
+gem "faraday", "~> 2.14"
