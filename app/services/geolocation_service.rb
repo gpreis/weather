@@ -13,6 +13,6 @@ class GeolocationService
     results = Geocoder.search(address_query)
     return if results.blank?
 
-    results.first.coordinates
+    results.first
   end
 end
