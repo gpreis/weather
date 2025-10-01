@@ -8,7 +8,7 @@ class WeatherApiService
   end
 
   def forecast(lat, lng)
-    client.post('forecast.json') { |req| req.params[:q] = [lat, lng].join(',')] }
+    client.post('forecast.json') { |req| req.params[:q] = [lat, lng].join(',') }
   end
 
   private

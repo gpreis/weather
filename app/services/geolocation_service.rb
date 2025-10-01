@@ -5,7 +5,7 @@ class GeolocationService
     @address_query = address_query
   end
 
-  def call(...)
+  def self.call(...)
     self.new(...).call
   end
 
@@ -13,6 +13,6 @@ class GeolocationService
     results = Geocoder.search(address_query)
     return if results.blank?
 
-    results.first.postal_code
+    results.first.coordinates
   end
 end
