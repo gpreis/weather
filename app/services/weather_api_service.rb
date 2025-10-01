@@ -1,4 +1,4 @@
-class WeatherService
+class WeatherApiService
   include Singleton
 
   attr_reader :client, :api_key, :base_url
