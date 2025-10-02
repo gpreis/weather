@@ -33,8 +33,8 @@ module WeatherApi
             interval: 0.5,
             interval_randomness: 0.1,
             backoff_factor: 2,
-            retry_statuses: [429, 500, 502, 503, 504],
-            methods: [:get, :post]
+            retry_statuses: [ 429, 500, 502, 503, 504 ],
+            methods: [ :get, :post ]
           }
           faraday.response :logger if Rails.env.development?
           faraday.options.timeout = 10

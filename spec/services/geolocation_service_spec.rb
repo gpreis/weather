@@ -2,11 +2,11 @@ require "rails_helper"
 
 RSpec.describe GeolocationService, type: :service do
   let(:address_query) { "San Francisco, CA" }
-  let(:geocoder_result) { double("geocoder_result", coordinates: [37.7749, -122.4194]) }
+  let(:geocoder_result) { double("geocoder_result", coordinates: [ 37.7749, -122.4194 ]) }
 
   describe "#call" do
     before do
-      allow(Geocoder).to receive(:search).and_return([geocoder_result])
+      allow(Geocoder).to receive(:search).and_return([ geocoder_result ])
     end
 
     context "with valid address" do

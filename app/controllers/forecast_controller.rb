@@ -1,5 +1,5 @@
 class ForecastController < ApplicationController
-  before_action :validate_address_param, only: [:search]
+  before_action :validate_address_param, only: [ :search ]
 
   def index; end
 
@@ -10,7 +10,7 @@ class ForecastController < ApplicationController
 
     @weather = WeatherForecastService.call(geolocation)
 
-    return handle_weather_error if @weather.blank?
+    handle_weather_error if @weather.blank?
   end
 
   private

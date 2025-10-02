@@ -23,7 +23,7 @@ class WeatherForecastService
   def forecast_request(lat, lng, days)
     WeatherApi::Client.with_connection do |client|
       client.post("forecast.json") do |req|
-        req.params[:q] = [lat, lng].join(",")
+        req.params[:q] = [ lat, lng ].join(",")
         req.params[:days] = days
       end
     end
@@ -42,6 +42,6 @@ class WeatherForecastService
     fresh_response = yield
     Rails.cache.write(cache_key, fresh_response, expires_in: 30.minutes) if fresh_response&.success?
 
-    [fresh_response, false]
+    [ fresh_response, false ]
   end
 end

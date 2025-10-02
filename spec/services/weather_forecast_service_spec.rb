@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe WeatherForecastService, type: :service do
   subject(:service) { described_class.new }
 
-  let(:geolocation) { double("geolocation", coordinates: [37.7749, -122.4194], postal_code: "94102") }
+  let(:geolocation) { double("geolocation", coordinates: [ 37.7749, -122.4194 ], postal_code: "94102") }
   let(:http_client) { instance_double(Faraday::Connection) }
   let(:successful_response) { double("response", success?: true, body: '{"location":{"name":"San Francisco"}}') }
 
