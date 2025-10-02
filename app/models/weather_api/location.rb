@@ -21,7 +21,7 @@ module WeatherApi
     end
 
     def full_name
-      [name, region, country].reject(&:blank?).join(", ")
+      [ name, region, country ].reject(&:blank?).join(", ")
     end
   end
 end
