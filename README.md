@@ -111,14 +111,12 @@ bundle exec rspec --format documentation
 
 # Run specific test types
 bundle exec rspec spec/models/     # Model tests
-bundle exec rspec spec/requests/   # Request/integration tests
 bundle exec rspec spec/routing/    # Routing tests
 ```
 
 ### Test Coverage
 
 - **Model Tests**: 130+ examples covering all WeatherApi models
-- **Request Tests**: 30+ examples testing controller endpoints
 - **Integration Tests**: 20+ examples testing end-to-end workflows
 - **Routing Tests**: Complete route coverage with path helpers
 
@@ -187,7 +185,6 @@ config/
 
 spec/                   # Test suite
 ├── models/             # Model tests
-├── requests/           # Request tests
 ├── routing/            # Routing tests
 └── integration/        # Integration tests
 ```
