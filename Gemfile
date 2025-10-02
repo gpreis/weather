@@ -59,3 +59,9 @@ gem "faraday", "~> 2.14"
 # Redis with hiredis for better performance for caching
 gem "redis", "~> 5.4"
 gem "hiredis-client", "~> 0.26.1"
+
+
+# Use RSpec for testing
+group :test, :development do
+  gem 'rspec-rails', '~> 8.0.2'
+end
