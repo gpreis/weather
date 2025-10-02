@@ -46,12 +46,16 @@ group :development do
   gem "web-console"
 end
 
+# Tailwind CSS integration for Ruby
 gem "tailwindcss-ruby", "~> 4.1"
-
 gem "tailwindcss-rails", "~> 4.3"
 
+# Geocoding library, to facilitate location lookups and get zip codes and coordinates from address query
 gem "geocoder", "~> 1.8"
 
-gem "redis", "~> 5.4"
-
+# HTTP client, to facilitate Weather API calls
 gem "faraday", "~> 2.14"
+
+# Redis with hiredis for better performance for caching
+gem "redis", "~> 5.4"
+gem "hiredis-client", "~> 0.26.1"
