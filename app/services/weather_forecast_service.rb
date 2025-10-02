@@ -12,7 +12,7 @@ class WeatherForecastService
     zip_code = geolocation.postal_code
 
     response, cache_hit = cache_wrapper("forecast_#{zip_code}") do
-      make_api_request(lat, lng, days)
+      forecast_request(lat, lng, days)
     end
 
     return unless response.success?
@@ -22,7 +22,7 @@ class WeatherForecastService
 
   private
 
-  def make_api_request(lat, lng, days)
+  def forecast_request(lat, lng, days)
     client.post("forecast.json") do |req|
       req.params[:q] = [ lat, lng ].join(",")
       req.params[:days] = days
@@ -40,7 +40,7 @@ class WeatherForecastService
   end
 
   def initialize
-    # API KEY should never be hardcoded in a real project - but keep for simplicity sake
+    # API KEY should never be hardcoded in a real project - but keep it here for simplicity sake
     # It should be in environment variables and NEVER committed to github
     api_key = ENV.fetch("OPENWEATHER_API_KEY", "b80c2bdb4fcc4890929230834253009")
     base_url = "http://api.weatherapi.com/v1"
