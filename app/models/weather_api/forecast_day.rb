@@ -14,17 +14,22 @@ module WeatherApi
     end
 
     def self.from_hash(params = {})
+      day_data = params[:day] || {}
+      condition_data = day_data[:condition]
+
       new(
         date: params[:date],
-        maxtemp_c: params.dig(:day, :maxtemp_c),
-        maxtemp_f: params.dig(:day, :maxtemp_f),
-        mintemp_c: params.dig(:day, :mintemp_c),
-        mintemp_f: params.dig(:day, :mintemp_f),
-        condition: Condition.from_hash(params.dig(:day, :condition))
+        maxtemp_c: day_data[:maxtemp_c],
+        maxtemp_f: day_data[:maxtemp_f],
+        mintemp_c: day_data[:mintemp_c],
+        mintemp_f: day_data[:mintemp_f],
+        condition: condition_data && Condition.from_hash(condition_data)
       )
     end
 
     def self.many_from_hash(forecastdays)
+      return [] if forecastdays.blank?
+
       forecastdays.map { |forecast| from_hash(forecast) }
     end
   end
