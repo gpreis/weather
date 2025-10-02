@@ -10,6 +10,8 @@ class GeolocationService
   end
 
   def call
+    return if address_query.blank?
+
     results = Geocoder.search(address_query)
     return if results.blank?
 

@@ -11,6 +11,6 @@ class ForecastController < ApplicationController
       return render :index
     end
 
-    @weather = WeatherApiService.instance.forecast(geolocation)
+    @weather = WeatherForecastService.call(geolocation)
   end
 end
