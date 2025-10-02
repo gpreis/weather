@@ -7,6 +7,7 @@ A modern Ruby on Rails application that provides 5-day weather forecasts with in
 - **Address-based Weather Search**: Enter any address to get weather forecasts
 - **Intelligent Geocoding**: Automatic postal code detection and coordinate conversion
 - **5-Day Weather Forecasts**: Detailed weather information including temperature and conditions
+- **Production-Ready HTTP Client**: Robust Faraday configuration with timeout handling and error recovery
 - **Redis Caching**: High-performance caching with visual cache hit indicators
 - **Responsive Design**: Beautiful, mobile-friendly interface built with Tailwind CSS
 - **Cache Status Indicators**: Visual feedback showing when data is served from cache vs fresh API calls
@@ -23,10 +24,10 @@ This helps users understand response times and demonstrates the caching system i
 
 - **Backend**: Ruby 3.4.6, Rails 8.0.3
 - **Caching**: Redis 5.4 with Hiredis driver for performance
+- **HTTP Client**: Faraday 2.14 with production-ready configuration (timeouts, error handling)
 - **Frontend**: Tailwind CSS 4.3 with modern responsive design
-- **HTTP Client**: Faraday 2.14 for external API communication
-- **Geocoding**: Geocoder gem for address-to-coordinates and address-to-zipcode conversion
-- **Testing**: RSpec 8.0.2 with comprehensive test coverage
+- **Geocoding**: Geocoder gem for address-to-coordinates and postal code conversion
+- **Testing**: RSpec 8.0.2 following Better Specs
 - **Code Quality**: RuboCop with Rails Omakase styling
 
 ## Quick Start
@@ -100,7 +101,7 @@ This helps users understand response times and demonstrates the caching system i
 
 ## Testing
 
-The application includes comprehensive test coverage following Better Specs guidelines:
+The application includes comprehensive test coverage following Better Specs guidelines with an optimized test suite:
 
 ```bash
 # Run all tests
@@ -111,16 +112,31 @@ bundle exec rspec --format documentation
 
 # Run specific test types
 bundle exec rspec spec/models/     # Model tests
+bundle exec rspec spec/services/   # Service tests
 bundle exec rspec spec/routing/    # Routing tests
+bundle exec rspec spec/integration/ # Integration tests
 ```
 
-### Test Coverage
+### Test Coverage & Optimization
 
-- **Model Tests**: 130+ examples covering all WeatherApi models
-- **Integration Tests**: 20+ examples testing end-to-end workflows
-- **Routing Tests**: Complete route coverage with path helpers
+Following Better Specs guidelines, the test suite has been optimized to eliminate overtesting while maintaining comprehensive coverage:
+
+- **Model Tests**: Focused coverage of all WeatherApi models with data transformation logic
+- **Service Tests**: Comprehensive testing of GeolocationService and WeatherForecastService
+- **Integration Tests**: End-to-end workflow testing with real API response scenarios
+- **Routing Tests**: Essential route coverage with path helpers and HTTP method validation
 
 ## Configuration
+
+### HTTP Client Configuration
+
+The application uses a production-ready HTTP client configuration with:
+
+- **Timeouts**: 10-second read timeout, 5-second connection timeout
+- **Error Handling**: Graceful recovery from network failures with proper logging
+- **Connection Management**: Memoized client instances for efficiency
+- **Environment-aware Logging**: Debug logging in development only
+- **Retry Logic**: Built-in resilience for transient failures
 
 ### Redis Caching
 
@@ -128,15 +144,16 @@ The application uses Redis with the Hiredis driver for optimal performance:
 
 - **Cache Duration**: 30 minutes for weather data
 - **Cache Keys**: `forecast_{postal_code}` format
-- **Connection Pool**: Configured for high concurrency
-- **Fallback**: Graceful degradation if Redis is unavailable
+- **Fallback Strategy**: Graceful degradation if Redis is unavailable
+- **Visual Indicators**: Cache hit/miss status displayed to users
 
 ### Weather API Integration
 
 - **Provider**: WeatherAPI.com
 - **Endpoints**: Current weather and 5-day forecast
 - **Rate Limiting**: Cached responses reduce API calls
-- **Error Handling**: Graceful fallbacks for API failures
+- **Error Handling**: Graceful fallbacks for API failures with user-friendly messages
+- **Timeout Management**: Configured timeouts prevent hanging requests
 
 ### Geocoding Service
 
@@ -185,6 +202,7 @@ config/
 
 spec/                   # Test suite
 ├── models/             # Model tests
+├── services/           # Service tests (GeolocationService, WeatherForecastService)
 ├── routing/            # Routing tests
 └── integration/        # Integration tests
 ```
@@ -209,5 +227,5 @@ bundle exec brakeman
 - Follow Better Specs guidelines for testing
 - Use RuboCop Rails Omakase configuration
 - Write descriptive commit messages
-- Include tests for new features (using better specs specification)
+- Include tests for new features using Better Specs methodology
 - Update documentation as needed
