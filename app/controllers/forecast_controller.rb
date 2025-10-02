@@ -13,7 +13,5 @@ class ForecastController < ApplicationController
 
     @address = params[:address]
     @weather = WeatherApiService.instance.forecast(*geolocation.coordinates)
-    @current_weather = {}
-    @forecast = []
   end
 end

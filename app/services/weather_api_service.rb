@@ -7,9 +7,10 @@ class WeatherApiService
     client.post('current.json') { |req| req.params[:q] = q }
   end
 
-  def forecast(lat, lng, days: 3)
+  def forecast(lat, lng, days: 6)
     response = client.post('forecast.json') do |req|
       req.params[:q] = [lat, lng].join(',')
+      req.params[:days] = days
     end
 
     WeatherApi::ForecastResponse.from_response(response) if response.success?
