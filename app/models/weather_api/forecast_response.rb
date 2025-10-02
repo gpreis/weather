@@ -15,7 +15,7 @@ module WeatherApi
       forecast_current, *forecast_days = ForecastDay.many_from_hash(body.dig(:forecast, :forecastday))
 
       new(
-        location: body[:location],
+        location: Location.from_hash(body[:location]),
         current: Current.from_hash(**body[:current], forecast: forecast_current),
         forecast_days: forecast_days,
         cache_hit: cache_hit

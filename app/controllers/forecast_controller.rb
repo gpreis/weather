@@ -11,7 +11,6 @@ class ForecastController < ApplicationController
       return render :index
     end
 
-    @address = params[:address]
     @weather = WeatherApiService.instance.forecast(geolocation)
   end
 end

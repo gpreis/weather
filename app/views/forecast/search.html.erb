@@ -6,14 +6,16 @@
     </div>
 
     <!-- Address Header -->
-    <div class="mb-8">
+    <div class="mb-4">
       <div class="flex items-center justify-between mb-2">
-        <h2 class="text-2xl font-semibold text-gray-800"><%= @address %></h2>
+        <div class="flex items-center gap-4">
+          <h2 class="text-2xl font-semibold text-gray-800"><%= @weather.location.full_name %></h2>
+          <span class="text-sm text-gray-500"><%= @weather.location.localtime %></span>
+        </div>
         <span class="px-2 py-1 text-xs font-bold uppercase tracking-wide text-white rounded <%= @weather.cache_hit ? 'bg-blue-500' : 'bg-red-500' %>">
           CACHE HIT
         </span>
       </div>
-      <p class="text-gray-600">5-Day Weather Forecast</p>
     </div>
 
     <!-- Current Weather -->
