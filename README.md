@@ -16,7 +16,7 @@ A modern Ruby on Rails application that provides 5-day weather forecasts with in
 
 The application displays cache status with color-coded indicators:
 - **🔵 Blue "CACHE HIT" tag**: Data was retrieved from Redis cache (faster response)
-- **🔴 Red "CACHE HIT" tag**: Data was fetched fresh from the weather API (slower response)
+- **🔴 Red "CACHE MISS" tag**: Data was fetched fresh from the weather API (slower response)
 
 This helps users understand response times and demonstrates the caching system in action.
 
