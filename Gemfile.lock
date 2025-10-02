@@ -364,7 +364,7 @@ DEPENDENCIES
   connection_pool (~> 2.4)
   debug
   faraday (~> 2.14)
-  faraday-retry (~> 2.2)
+  faraday-retry (~> 2.3)
   geocoder (~> 1.8)
   hiredis-client (~> 0.26.1)
   importmap-rails

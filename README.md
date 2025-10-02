@@ -59,6 +59,9 @@ This helps users understand response times and demonstrates the caching system i
    # Weather API Configuration
    OPENWEATHER_API_KEY=your_weather_api_key_here
 
+   # HTTP Client Pool Configuration (optional)
+   WEATHER_API_POOL_SIZE=10
+
    # Redis Configuration
    REDIS_URL=redis://localhost:6379/0
    ```
@@ -128,15 +131,17 @@ Following Better Specs guidelines, the test suite has been optimized to eliminat
 
 ## Configuration
 
-### HTTP Client Configuration
+### HTTP Client Best Practices
 
-The application uses a production-ready HTTP client configuration with:
-
-- **Timeouts**: 10-second read timeout, 5-second connection timeout
-- **Error Handling**: Graceful recovery from network failures with proper logging
-- **Connection Management**: Memoized client instances for efficiency
-- **Environment-aware Logging**: Debug logging in development only
-- **Retry Logic**: Built-in resilience for transient failures
+- ✅ **Connection pooling** for efficient resource management
+- ✅ **Intelligent retry logic** with exponential backoff for transient failures
+- ✅ **Configurable pool size** via environment variables
+- ✅ **Explicit timeouts** to prevent hanging requests
+- ✅ **Error recovery** with proper logging
+- ✅ **Environment-aware configuration**
+- ✅ **Centralized client management** via `WeatherApi::Client`
+- ✅ **Production-ready** connection lifecycle management
+- ✅ **Thundering herd protection** via randomized retry intervals
 
 ### Redis Caching
 
