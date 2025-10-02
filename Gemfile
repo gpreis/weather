@@ -63,5 +63,5 @@ gem "hiredis-client", "~> 0.26.1"
 
 # Use RSpec for testing
 group :test, :development do
-  gem 'rspec-rails', '~> 8.0.2'
+  gem "rspec-rails", "~> 8.0.2"
 end
