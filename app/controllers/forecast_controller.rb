@@ -5,13 +5,13 @@ class ForecastController < ApplicationController
     geolocation = GeolocationService.new(params[:address]).call
     postal_code = geolocation.postal_code
 
-    if postal_code.present?
-      flash.now[:notice] = "zipcode: #{postal_code}"
-    else
+    if postal_code.blank?
       flash.now[:alert] = "Not able to determine a zip code for this address!"
+
+      return render :index
     end
 
     @address = params[:address]
-    @weather = WeatherApiService.instance.forecast(*geolocation.coordinates)
+    @weather = WeatherApiService.instance.forecast(geolocation)
   end
 end

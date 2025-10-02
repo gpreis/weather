@@ -3,17 +3,33 @@ class WeatherApiService
 
   attr_reader :client
 
-  def current(q)
-    client.post('current.json') { |req| req.params[:q] = q }
+  def self.forecast(...)
+    instance.forecast(...)
   end
 
-  def forecast(lat, lng, days: 6)
-    response = client.post('forecast.json') do |req|
-      req.params[:q] = [lat, lng].join(',')
-      req.params[:days] = days
+  def forecast(geolocation, days: 6)
+    lat, lng = geolocation.coordinates
+    zip_code = geolocation.postal_code
+
+    response, cache_hit = cache_wrapper("forecast_#{zip_code}") do
+      client.post('forecast.json') do |req|
+        req.params[:q] = [lat, lng].join(',')
+        req.params[:days] = days
+      end
     end
 
-    WeatherApi::ForecastResponse.from_response(response) if response.success?
+    WeatherApi::ForecastResponse.from_response(response, cache_hit: cache_hit) if response.success?
+  end
+
+  def cache_wrapper(cache_key)
+    response = Rails.cache.read(cache_key)
+
+    return response, true if response.present?
+
+    response = yield
+
+    Rails.cache.write(cache_key, response, expires_in: 30.minutes)
+    return response, false
   end
 
   private
