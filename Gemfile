@@ -55,6 +55,10 @@ gem "geocoder", "~> 1.8"
 
 # HTTP client, to facilitate Weather API calls
 gem "faraday", "~> 2.14"
+gem "faraday-retry", "~> 2.2"
+
+# Connection pooling for better resource management
+gem "connection_pool", "~> 2.4"
 
 # Redis with hiredis for better performance for caching
 gem "redis", "~> 5.4"
